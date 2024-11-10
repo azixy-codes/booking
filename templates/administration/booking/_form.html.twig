@@ -1,0 +1,67 @@
+<div class="max-w-4xl">
+	{{ form_start(form) }}
+	{{ form_row(form._token) }}
+	<div class="my-5 w-full space-y-3">
+		<div class="w-1/2">
+			<label for="{{ field_name(form.user) }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+				Client
+			</label>
+			<select id="{{ field_name(form.user) }}" name="{{ field_name(form.user) }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+				<option value="">--- Choisissez le client ---</option>
+				{% for label, value  in field_choices(form.user) %}
+					<option value="{{ value }}" {{ form.user.vars.value is same as value ? "selected" : "" }}>{{ label }}
+					</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="w-1/2">
+			<label for="{{ field_name(form.spot) }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+				Place
+			</label>
+			<select id="{{ field_name(form.spot) }}" name="{{ field_name(form.spot) }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+				<option value="">--- Choisissez la place ---</option>
+				{% for label, value  in field_choices(form.spot) %}
+					<option value="{{ value }}" {{ form.spot.vars.value is same as value ? "selected" : "" }}>{{ label }}
+					</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="w-1/2">
+			<label for="{{ field_name(form.timeslot) }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+				Créneau horaire
+			</label>
+			<select id="{{ field_name(form.timeslot) }}" name="{{ field_name(form.timeslot) }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+				<option value="">--- Choisissez le créneau horaire ---</option>
+				{% for label, value  in field_choices(form.timeslot) %}
+					<option value="{{ value }}" {{ form.timeslot.vars.value is same as value ? "selected" : "" }}>{{ label }}
+					</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="w-1/2">
+			<label for="{{ field_name(form.date) }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+				Date
+			</label>
+			<input type="date" id="{{ field_name(form.date) }}" name="{{ field_name(form.date) }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{ field_value(form.date) }}" required/>
+		</div>
+		<div class="w-1/2">
+			<label for="{{ field_name(form.status) }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+				Statut
+			</label>
+			<select id="{{ field_name(form.status) }}" name="{{ field_name(form.status) }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+				<option value="">--- Choisissez le statut ---</option>
+				{% for value, label  in field_choices(form.status) %}
+					<option value="{{ label }}" {{ form.status.vars.value is same as label ? "selected" : "" }}>{{ label }}
+					</option>
+				{% endfor %}
+			</select>
+		</div>
+
+
+	</div>
+	<div class="w-1/2">
+		<button class="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-md shadow">
+			{{ button_label|default('Ajouter une nouvelle réservation') }}
+		</button>
+	</div>
+	{{ form_end(form, {'render_rest': false}) }}</div>

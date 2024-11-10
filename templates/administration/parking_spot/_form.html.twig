@@ -1,0 +1,43 @@
+<div class="max-w-4xl">
+	{{ form_start(form) }}
+	{{ form_row(form._token) }}
+	<div class="my-5 w-full space-y-3">
+		<div class="w-1/2">
+			<label for="{{ field_name(form.spot_number) }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+				Numéro de place
+			</label>
+			<input type="number" id="{{ field_name(form.spot_number) }}" name="{{ field_name(form.spot_number) }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{ field_value(form.spot_number) }}" required/>
+		</div>
+		<div class="w-1/2">
+			<label for="{{ field_name(form.location) }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+				Emplacement
+			</label>
+			<input type="text" id="{{ field_name(form.location) }}" name="{{ field_name(form.location) }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Zone X" value="{{ field_value(form.location) }}" required/>
+		</div>
+		<div class="w-1/2">
+			<label for="{{ field_name(form.type) }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+				Type
+			</label>
+			<select id="{{ field_name(form.type) }}" name="{{ field_name(form.type) }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+				<option value="">--- Choisissez le type de la place ---</option>
+				{% for label, value in field_choices(form.type) %}
+					<option value="{{ value }}" {{ form.type.vars.value is same as value ? "selected" : "" }}>{{ value }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="w-1/2">
+			<label for="{{ field_name(form.status) }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+				Etat
+			</label>
+			<select id="{{ field_name(form.status) }}" name="{{ field_name(form.status) }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+				<option value="">--- Choisissez l'etat de la place ---</option>
+				{% for label, value in field_choices(form.status) %}
+					<option value="{{ value }}" {{ form.status.vars.value is same as value ? "selected" : "" }}>{{ value }}</option>
+				{% endfor %}
+			</select>
+		</div>
+	</div>
+	<div class="w-1/2">
+		<button class="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-md shadow">{{ button_label|default('Ajouter une nouvelle place') }}</button>
+	</div>
+	{{ form_end(form, {'render_rest': false}) }}</div>
